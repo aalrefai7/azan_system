@@ -46,7 +46,7 @@ works even though direct SSH to the Pi has been unreliable.
 Edit the `TARGET_VOLUME` line near the top of `deploy/bt_volume_guard.sh`:
 
 ```bash
-TARGET_VOLUME="30%"   # change this
+TARGET_VOLUME="40%"   # change this
 ```
 
 Commit and push. Within 2 minutes the Pi will pick it up and the next time the
@@ -99,3 +99,20 @@ sudo loginctl enable-linger pi        # so services keep running after logout/re
 The read-only token is scoped to just this repo (Contents: Read-only), created at
 `github.com/settings/tokens?type=beta`. It only needs read access since the Pi
 never pushes — it only pulls.
+
+## Known limitations
+
+- **`/etc/bluetooth/connect_speaker.sh` isn't in this repo.** It's the script
+  that actually pairs/connects the speaker at boot (referenced by
+  `bluetooth-speaker-connect.service`), but it lives outside `~/adhan-player`
+  and was hand-edited directly on the Pi, so it was never captured here. If
+  the Pi's SD card is ever rebuilt, that script has to be rewritten from
+  scratch. Worth pulling its contents into this repo next time it's touched.
+- **Anyone who can push to this GitHub repo can run arbitrary code on the Pi**
+  within about 2 minutes — that's the nature of an auto-pull-and-run setup.
+  Fine as long as the repo stays private with just you as a collaborator;
+  don't add collaborators or make it public without rethinking this.
+- **`git_sync.sh` clears a stale `.git/index.lock` older than 5 minutes** on
+  every run, to recover automatically if the Pi loses power mid-sync (it's
+  had under-voltage issues before). Safe here since nothing else ever writes
+  to this repo — just worth knowing if you ever add something else that does.

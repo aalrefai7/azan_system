@@ -6,6 +6,11 @@
 set -e
 cd "$(dirname "$0")/.."
 
+# A stale lock (e.g. from a power loss mid-sync — this Pi has a history of
+# under-voltage reboots) would otherwise silently break every sync after it.
+# Nothing else ever writes to this repo, so it's always safe to clear.
+find .git/index.lock -mmin +5 -delete 2>/dev/null || true
+
 BEFORE=$(git rev-parse HEAD)
 git fetch --quiet origin
 git reset --hard --quiet origin/main
