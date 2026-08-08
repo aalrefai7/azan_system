@@ -13,7 +13,8 @@ AFTER=$(git rev-parse HEAD)
 
 if [ "$BEFORE" != "$AFTER" ]; then
     logger -t adhan-sync "Updated $BEFORE -> $AFTER"
-    cp deploy/adhan-sync.service deploy/adhan-sync.timer ~/.config/systemd/user/
+    cp deploy/adhan-sync.service deploy/adhan-sync.timer deploy/bt-volume-guard.service ~/.config/systemd/user/
     systemctl --user daemon-reload
     systemctl --user restart adhan.service
+    systemctl --user restart bt-volume-guard.service
 fi

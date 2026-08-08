@@ -4,7 +4,7 @@ After=bluetooth.service pulseaudio.service pipewire.service
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/bt_volume_guard.sh
+ExecStart=%h/adhan-player/deploy/bt_volume_guard.sh
 Restart=always
 RestartSec=5
 
