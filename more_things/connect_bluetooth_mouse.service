@@ -1,0 +1,11 @@
+[Unit]
+Description=Connect Bluetooth Mouse
+After=bluetooth.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/connect_bluetooth_mouse.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

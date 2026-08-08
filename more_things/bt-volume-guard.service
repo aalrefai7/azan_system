@@ -1,0 +1,12 @@
+[Unit]
+Description=Pin Bluetooth speaker volume on every (re)connect
+After=bluetooth.service pulseaudio.service pipewire.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/bt_volume_guard.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

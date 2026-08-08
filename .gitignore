@@ -1,0 +1,5 @@
+adhan.log
+adhan.log.*
+.played_*
+__pycache__/
+*.pyc

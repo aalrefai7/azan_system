@@ -1,0 +1,12 @@
+[Unit]
+Description=Connect Bluetooth speaker
+After=bluetooth.service
+Requires=bluetooth.service
+
+[Service]
+Type=oneshot
+ExecStart=/etc/bluetooth/connect_speaker.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
