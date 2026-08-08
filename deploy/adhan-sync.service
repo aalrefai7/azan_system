@@ -3,4 +3,4 @@ Description=Pull latest adhan_player code from GitHub
 
 [Service]
 Type=oneshot
-ExecStart=%h/adhan-player/more_things/git_sync.sh
+ExecStart=%h/adhan-player/deploy/git_sync.sh

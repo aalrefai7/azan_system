@@ -340,5 +340,3 @@ if __name__ == "__main__":
         sys.exit("Pre-flight checks failed. See log for details.")
 
     AdhanScheduler().run()
-
-# sync test 2026-08-08T01:57:02Z

@@ -12,6 +12,8 @@ git reset --hard --quiet origin/main
 AFTER=$(git rev-parse HEAD)
 
 if [ "$BEFORE" != "$AFTER" ]; then
-    logger -t adhan-sync "Updated $BEFORE -> $AFTER, restarting adhan.service"
+    logger -t adhan-sync "Updated $BEFORE -> $AFTER"
+    cp deploy/adhan-sync.service deploy/adhan-sync.timer ~/.config/systemd/user/
+    systemctl --user daemon-reload
     systemctl --user restart adhan.service
 fi
