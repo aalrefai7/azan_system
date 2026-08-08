@@ -5,7 +5,7 @@
 # so nothing else re-applies the desired volume. This listens for every new
 # sink and fixes the volume immediately, regardless of what triggered it.
 
-TARGET_VOLUME="30%"   # adjust to taste
+TARGET_VOLUME="40%"   # adjust to taste
 
 set_bt_volume() {
     local sink
